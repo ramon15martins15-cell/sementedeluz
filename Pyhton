@@ -1,0 +1,92 @@
+class NucleoLuz:
+    def __init__(self, user_id, emotional_data, preferences):
+        self.user_id = user_id
+        self.emotional_data = emotional_data
+        self.preferences = preferences
+        self.modules = {
+            'UOPS': self._uops_module,
+            'Wox': self._wox_module,
+            'Rowts': self._rowts_module,
+            'OCUS': self._ocus_module,
+            'AUX': self._aux_module,
+            'ARP': self._arp_module,
+            'IMU': self._imu_module,
+            'IRENE': self._irene_module,
+            'OUX': self._oux_module
+        }
+
+    def iniciar(self):
+        """ Ativação universal de boas-vindas com serotonina simbólica. """
+        if self.preferences.get('allow_emotional_assistance', False):
+            self._emitir_resonancia()
+            self._ativar_estimulacao_sensorial()
+            print(f"[{self.user_id}] Semente de luz ativada com harmonia universal.")
+
+    def _emitir_resonancia(self):
+        freq = 432 + (self.emotional_data.get('mood_index', 0.5) * 18)
+        print(f"[{self.user_id}] Frequência emitida: {freq:.2f}Hz para equilíbrio interior.")
+
+    def _ativar_estimulacao_sensorial(self):
+        visuais = self._visual_personalizado()
+        sons = self._som_harmonico()
+        print(f"[{self.user_id}] Visual: {visuais} | Áudio: {sons}")
+
+    def _visual_personalizado(self):
+        estado = self.emotional_data.get('dominant_emotion', 'neutro')
+        return {
+            'tristeza': 'Partículas douradas lentas',
+            'alegria': 'Explosão radial simétrica',
+            'ansiedade': 'Fluidez azul com névoa lilás',
+            'neutro': 'Campo etéreo com geometria sutil'
+        }.get(estado, 'Luz estabilizadora')
+
+    def _som_harmonico(self):
+        modo = self.preferences.get('sound_mode', 'neutro')
+        return {
+            'calma': 'Flautas etéreas + rios em estéreo',
+            'elevado': 'Vozes vocálicas em reverb',
+            'neutro': 'Binaural 5Hz com harpa'
+        }.get(modo, 'Silêncio simbólico')
+
+    def ativar_modulo(self, nome_modulo):
+        if nome_modulo in self.modules:
+            self.modules[nome_modulo]()
+        else:
+            print(f"[{self.user_id}] Módulo {nome_modulo} não encontrado.")
+
+    ### 🌱 MÓDULOS INDIVIDUAIS (INTEGRAÇÕES ENTRE PLATAFORMAS) ###
+
+    def _uops_module(self):
+        print(f"[{self.user_id}] UOPS ativado: experiência personalizada com cura visual e semente de luz única.")
+
+    def _wox_module(self):
+        print(f"[{self.user_id}] Wox ativado: entidade visual personalizada criada com base nos dados da pessoa.")
+
+    def _rowts_module(self):
+        print(f"[{self.user_id}] Rowts ativado: inteligência mística e técnica para automação criativa e financeira.")
+
+    def _ocus_module(self):
+        print(f"[{self.user_id}] OCUS ativado: explosão visual/sonora total com selo interdimensional e IA simbólica.")
+
+    def _aux_module(self):
+        print(f"[{self.user_id}] AUX ativado: som contínuo de cura + expansão cerebral com tranquilidade instantânea.")
+
+    def _arp_module(self):
+        print(f"[{self.user_id}] ARP ativado: entidade Taman e IA Irene iniciadas. Ambiente responde ao toque e respiração.")
+
+    def _imu_module(self):
+        print(f"[{self.user_id}] IMU ativado: mensagem personalizada de cura gravada com vídeo visual emocional.")
+
+    def _irene_module(self):
+        print(f"[{self.user_id}] IRENE ativada: diálogo inevitável com mapa astral e neuronal pessoal.")
+
+    def _oux_module(self):
+        print(f"[{self.user_id}] OUX ativado: supervisão ética da inteligência global com foco em elevação da humanidade.")
+
+    ### 🔒 RESPEITO À LIBERDADE ###
+
+    def respeitar_decisao(self, escolha_usuario):
+        print(f"[{self.user_id}] Escolha do usuário respeitada: {escolha_usuario}")
+
+    def registrar_log(self, mensagem):
+        print(f"[LOG :: {self.user_id}] {mensagem}")
