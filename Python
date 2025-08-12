@@ -1,0 +1,76 @@
+# ===============================
+# Configurações Oficiais Rowts
+# ===============================
+
+class RowtsConfig:
+    """
+    Configuração central do ecossistema Rowts
+    (usar em todo o sistema para evitar divergências)
+    """
+    # Identidade do proprietário
+    OWNER_NAME = "Ramon Martins dos Reis"
+    OWNER_EMAIL = "ramon15martins15@gmail.com"
+
+    # Pagamentos - Chaves e identificadores
+    PIX_CPF = "021587776-48"  # PIX via CPF
+    MERCADO_PAGO_EMAIL = "ramon15martins15@gmail.com"
+    PAYPAL_EMAIL = "ramon15martins15@gmail.com"
+
+    # Para pagamentos internacionais
+    STRIPE_API_KEY = "SUA_CHAVE_STRIPE_AQUI"   # usar variável de ambiente em produção
+    PAYPAL_CLIENT_ID = "SUA_CLIENT_ID_PAYPAL_AQUI"
+    PAYPAL_SECRET = "SEU_SECRET_PAYPAL_AQUI"
+
+    # Nome e identidade visual
+    BRAND_NAME = "Rowts"
+    SUB_BRANDS = ["UOPS", "Wox", "OCUS", "OUX", "Sublimação~Martins"]
+
+    # Diretórios padrão
+    DATA_DIR = "/mnt/data/rowts_data"
+    IMAGE_OUTPUT_DIR = f"{DATA_DIR}/images"
+    LOG_DIR = f"{DATA_DIR}/logs"
+
+    # URLs de referência (futuro)
+    WEBSITE_URL = "https://rowts.example.com"
+    API_BASE_URL = "https://api.rowts.example.com"
+
+# ===============================
+# Inicialização de diretórios
+# ===============================
+import os
+
+for path in [RowtsConfig.DATA_DIR, RowtsConfig.IMAGE_OUTPUT_DIR, RowtsConfig.LOG_DIR]:
+    os.makedirs(path, exist_ok=True)
+
+# ===============================
+# Funções de acesso rápido
+# ===============================
+
+def get_pix_info():
+    """Retorna dados Pix para cobrança."""
+    return {
+        "tipo": "cpf",
+        "cpf": RowtsConfig.PIX_CPF,
+        "nome": RowtsConfig.OWNER_NAME,
+    }
+
+def get_payment_methods():
+    """Retorna métodos de pagamento ativos."""
+    return {
+        "pix": get_pix_info(),
+        "paypal": {"email": RowtsConfig.PAYPAL_EMAIL},
+        "stripe": {"api_key": RowtsConfig.STRIPE_API_KEY}
+    }
+
+def get_brand_identity():
+    """Retorna informações da marca Rowts."""
+    return {
+        "nome": RowtsConfig.BRAND_NAME,
+        "submarcas": RowtsConfig.SUB_BRANDS,
+        "email_contato": RowtsConfig.OWNER_EMAIL
+    }
+
+if __name__ == "__main__":
+    print("=== Rowts Configuração ===")
+    print(get_brand_identity())
+    print(get_payment_methods())
